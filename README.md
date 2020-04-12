@@ -12,7 +12,7 @@ This client allows easy access to defiads which can serve as either:
 
 ## Installation
 
-Try out the demo version at http://95.217.158.9/.
+Try out the demo version at http://95.217.158.9/. Note that at this moment it only works in Tor Browser (need HTTPS connection to use crypto functions).
 
 Ready for the real thing?
 
@@ -30,7 +30,7 @@ Now you can either:
 * At this moment the iframe containing the ad has the most restrictive sandbox possible.
 This means it can't run any scripts or make requests to same-site. In the future scripts are likely to be enabled.
 Those worried about tracking can use the browser's offline mode.
-* Does not work in Tor Browser because of its restrictive local resource access policy.
+* Local version does not work in Tor Browser because of its restrictive local resource access policy.
 
 ## Features
 
