@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "none",
+    "target": "es2017",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "sourceMap": false,
+    "newLine": "lf",
+
+    "outDir": "dist",
+    "rootDir": "src",
+
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "declaration": false
+  },
+  "files": [
+    "src/types.ts",
+    "src/core.ts",
+    "src/app.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>const exports = {}; const require = () => exports;</script>
+    <script src="dist/core.js"></script>
+    <script src="dist/app.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <style>
+        input[type=text], input[type=password], input[type=number], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        div {
+            border-radius: 5px;
+            padding: 10px;
+        }
+        button {
+            width: 100%;
+            background-color: #44a;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        textarea {
+            height: 100%;
+        }
+        .target {
+            outline: none;
+            border: 1px solid #aaa;
+            display: inline-block;
+            width: 100%;
+            min-height: 600px;
+            height: 100%;
+        }
+        .fullScreen .target {
+            display: block;
+        }
+        .outerTarget {
+        }
+        .targetAbs {
+            margin-bottom: 5px;
+        }
+        div.targetCat {
+            display: inline-block;
+            padding: 10px;
+            color: #77a;
+            cursor: pointer;
+        }
+        div.targetCat p {
+            display: block;
+            outline: none;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 12px;
+            text-align: center;
+        }
+        div.explorer {
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .blank {
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+            display: none;
+        }
+        div.explorer .cats span, span.selectedCat {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            color: #4444aa;
+            cursor: pointer;
+        }
+        .breadcrumbs {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            background-color: #f2f2f2;
+        }
+        span.breadcrumbs.mono {
+            font-family: monospace;
+        }
+        span.breadcrumbs.verified {
+            background-color: #2ecc40;
+        }
+        span.breadcrumbs.unverified {
+            background-color: #f32;
+        }
+        span.breadcrumbs.catLink {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        a.breadcrumbs.targetUpdate {
+            cursor: pointer;
+            background-color: deepskyblue;
+        }
+        span.breadcrumbs.button {
+            background-color: #44a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        div.menu span.selected {
+            color: #113;
+            text-decoration: underline;
+        }
+        span.selectedCat {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            color: #113;
+            text-decoration: underline;
+        }
+        .selectedId {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            color: #113;
+            background-color: #f2f2f2;
+            font-family: monospace;
+        }
+        div.wallet {
+            background-color: #f0f0ff;
+            border: 1px solid #444;
+            position: absolute;
+            top: 58px;
+            right: 34px;
+            padding: 20px;
+            z-index: 1;
+        }
+        div.dialog {
+            background-color: #aae;
+            border: 1px solid #444;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -200px;
+            margin-left: -150px;
+            width: 300px;
+            height: 200px;
+            z-index: 3;
+        }
+        div.dialogBackground {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*background-color: #4CAF50;*/
+            background-color: #4CAF50B0;
+            z-index: 2;
+        }
+        div.fullScreen {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            padding: 0;
+            left: 0;
+            top: 0;
+            /*background-color: #4CAF50;*/
+            background-color: white;
+            z-index: 3;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 400px;
+            background-color: #abc;
+            color: #000;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 4;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        div.explorer p {
+            margin: 3px;
+            padding: 0;
+        }
+        div.menu {
+            padding: 0;
+            border: 1px solid #444444;
+        }
+        div.menu span {
+            margin-left: 10px;
+            margin-right: 30px;
+            cursor: pointer;
+            color: #4444aa;
+        }
+        div.menu span.highlight {
+            color: darkorange;
+        }
+        span.link {
+            margin-left: 10px;
+            margin-right: 10px;
+            color: #4444aa;
+            cursor: pointer;
+        }
+        span.address {
+            font-weight: bolder;
+            font-size: x-small;
+        }
+        body {
+            background-color: #f0f0ff;
+            /*background-image: linear-gradient(#99a, #eef);*/
+        }
+    </style>
+    <title>Defiads HTML</title>
+</head>
+<body>
+<div id="fullScreen" class="fullScreen" style="display: none;"></div>
+<div id="wallet" class="wallet" style="display: none;">
+    <p><b>Balance:</b></p>
+    <p>Total: <span id="balance.total">[loading]</span></p>
+    <p>Available: <span id="balance.available">[loading]</span></p>
+    <p>
+        <span id="deposit.request" class="link">Deposit</span>
+        <span id="withdraw.request" class="link">Withdraw</span>
+    </p>
+</div>
+<div id="dialog.security" class="dialogBackground" style="display: none;">
+    <div id="dialog" class="dialog">
+        <p>
+            <label for="dialog.input" id="dialog.msg"></label>
+        </p>
+        <p>
+            <input id="dialog.input" type="text" placeholder="" />
+        </p>
+        <p id="dialog.storage" style="display: none;">
+            <span>
+                <input id="dialog.save" type="checkbox" />
+                <label for="dialog.save" class="tooltip">Remember
+                    <span class="tooltiptext" id="dialog.storage.possible">
+                        Save this value in local storage
+                    </span>
+                    <span class="tooltiptext" id="dialog.storage.impossible" style="display: none;">
+                        Your browser does not support access to local storage when browsing a local file.<br/>
+                        You can still access the service, but you'll have to provide these values every session.
+                    </span>
+                </label>
+            </span>
+        </p>
+        <p>
+            <button id="dialog.submit">Submit</button>
+        </p>
+    </div>
+</div>
+<div class="container-xl" id="static">
+    <div id="menu" class="row menu">
+        <div class="col-9">
+            <span id="menu.blank" class="blank"></span>
+            <span id="menu.explorer">Explorer</span>
+            <span id="menu.composer">Composer</span>
+            <span id="menu.client">Client</span>
+        </div>
+        <div class="col-1">
+            <span id="menu.update" class="highlight" style="display: none;">Update</span>
+        </div>
+        <div class="col-1">
+            <span id="menu.txIds" style="display: none;">TxIds</span>
+        </div>
+        <div class="col-1">
+            <span id="menu.wallet">Wallet</span>
+        </div>
+    </div>
+    <div id="blank" class="blank" style="display: none;"></div>
+    <div id="explorer" class="explorer" style="display: none;">
+        <div class="row">
+            <div class="col">
+                <label for="explorer.cat">Enter category prefix:</label>
+                <input id="explorer.cat" type="text" value="" placeholder="Start typing category" />
+            </div>
+            <div class="col">
+                <p><strong>Categories</strong></p>
+                <div class="cats" id="cats"></div>
+            </div>
+        </div>
+    </div>
+    <div id="client" class="client" style="display: none;">
+        <div class="row">
+            <label for="client.method">Enter command:</label>
+            <input id="client.method" type="text" value="" />
+        </div>
+        <div class="row">
+            <label for="client.params">params (newline-separated):</label>
+            <textarea id="client.params" rows="1"></textarea>
+        </div>
+        <div class="row">
+            <button id="client.submit">Run</button>
+        </div>
+    </div>
+
+    <div id="composer" class="composer" style="display: none;">
+        <div class="row">
+            <label for="composer.cat">Category</label>
+            <input id="composer.cat" type="text" value="" />
+        </div>
+        <div class="row">
+            <label for="composer.abs">Abstract</label>
+            <input id="composer.abs" type="text" value="" />
+        </div>
+        <div class="row">
+            <label for="composer.content">Content</label>
+            <textarea id="composer.content" rows="20"></textarea>
+        </div>
+        <div class="row">
+            <input id="composer.sign" type="checkbox" />
+            <label for="composer.sign">Sign</label>
+        </div>
+        <div class="row">
+            <button id="composer.prepare">Prepare</button>
+        </div>
+    </div>
+    <div id="publisher" class="composer" style="display: none;">
+        <div class="row">
+            <div class="col">
+                <label for="composer.amtSat">Amount (sat)</label>
+                <input id="composer.amtSat" type="number" value="" />
+            </div>
+            <div class="col">
+                <label for="composer.term">Term (blocks)</label>
+                <input id="composer.term" type="number" value="" />
+            </div>
+            <div class="col">
+                <label for="composer.fee">Fee (sat/byte)</label>
+                <input id="composer.fee" type="number" value="" />
+            </div>
+        </div>
+        <div class="row">
+            <button id="composer.fund">Fund & Publish</button>
+        </div>
+    </div>
+    <div class="row" id="target.extra">
+        <span id="composer.preview.edit" class="breadcrumbs button" style="display: none;">Edit</span>
+        <span id="target.cat" class="breadcrumbs" style="display: none;"></span>
+        <span id="target.abs" class="breadcrumbs" style="display: none;"></span>
+        <span id="target.defiadId" class="breadcrumbs mono" style="display: none;"></span>
+        <span id="target.defiadId.full" class="breadcrumbs mono" style="display: none;"></span>
+        <span id="target.amount" class="breadcrumbs" style="display: none;"></span>
+        <span id="target.verified" class="breadcrumbs verified mono" style="display: none;"></span>
+        <span id="target.verified.full" class="breadcrumbs verified mono" style="display: none;"></span>
+        <a id="target.update" class="breadcrumbs targetUpdate" style="display: none;">Download release</a>
+    </div>
+    <div id="target" class="row outerTarget">
+        <div id="target.catList" class="target targetCat" style="display: none;"></div>
+        <iframe id="target.iframe" class="target" referrerpolicy="no-referrer" sandbox></iframe>
+    </div>
+</div>
+</body>
+</html>
