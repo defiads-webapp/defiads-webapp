@@ -7,4 +7,4 @@ echo "</script>" >> target.html
 echo "<style>" >> target.html
 cat css/*.css >> target.html
 echo "</style>" >> target.html
-cat index.html | grep -v "</script>" >> target.html
+cat index.html | grep -v "</script>" | grep -v '<link rel="stylesheet" href="css/bootstrap-grid.min.css">' >> target.html
