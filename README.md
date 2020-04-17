@@ -12,7 +12,7 @@ This client allows easy access to defiads which can serve as either:
 
 ## Installation
 
-Try out the demo version at https://defiads-webapp.github.io/.
+Try out the demo version at https://defiads-webapp.github.io.
 
 Ready for the real thing?
 
@@ -20,7 +20,7 @@ Ready for the real thing?
 * Launch defiads with `--defiads-peers 95.217.158.9:21866`
 
 Now you can either:
-* Download the client at https://defiads-webapp.github.io/ in Download section.
+* Download the client at https://defiads-webapp.github.io in Download section.
 * Download it directly from the network.
 * Clone this repo and run `yarn install && yarn build-open` (you'll need `yarn`).
 * Get your API key in defiads config directory (default `~/.defiads/testnet/defiads.cfg`).
