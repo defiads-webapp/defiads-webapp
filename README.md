@@ -21,9 +21,10 @@ Ready for the real thing?
 
 Now you can either:
 * Download the client at https://defiads-webapp.github.io in Download section.
-* Download it directly from the network.
+* Download it from [Releases page](https://github.com/defiads-webapp/defiads-webapp/releases)
 * Clone this repo and run `yarn install && yarn build-open` (you'll need `yarn`).
-* Get your API key in defiads config directory (default `~/.defiads/testnet/defiads.cfg`).
+
+After you got your local version get your API key in defiads config directory (default `~/.defiads/testnet/defiads.cfg`).
 
 ## Current limitations
 
