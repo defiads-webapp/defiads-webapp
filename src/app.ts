@@ -112,7 +112,7 @@ import Timeout = NodeJS.Timeout;
 ///		to local storage for file protocol.
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const CONFIG = {
+const CONFIG = {
 	endpoint: undefined,
 	apiKey: undefined,
 	privateKey: undefined,
